@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const CustomerTable = ({ customers }) => {
+  const [showAll, setShowAll] = useState(false);
+
   if (!customers || customers.length === 0) return <p className="text-[#86868B] text-center py-10 font-medium">No data available.</p>;
 
-  const sorted = [...customers].sort((a, b) => b.churn_score - a.churn_score).slice(0, 20);
+  const sorted = [...customers].sort((a, b) => b.churn_score - a.churn_score);
+  const displayedCustomers = showAll ? sorted : sorted.slice(0, 20);
 
   const getTierColor = (tier) => {
     if (tier === 'critical') return 'text-[#FF3B30] bg-[#FF3B30]/10 border-[#FF3B30]/20';
@@ -24,7 +27,7 @@ const CustomerTable = ({ customers }) => {
             </tr>
           </thead>
         <tbody className="divide-y divide-appleBorder/40">
-          {sorted.map(c => {
+          {displayedCustomers.map(c => {
             return (
               <tr key={c.id} className="border-b border-[#D2D2D7]/40 hover:bg-[#F5F5F7] transition-colors duration-150">
                 <td className="px-6 py-4 font-semibold text-[#1D1D1F]">{c.name}</td>
@@ -51,6 +54,16 @@ const CustomerTable = ({ customers }) => {
           })}
         </tbody>
       </table>
+      {sorted.length > 20 && (
+        <div className="flex justify-center p-4 border-t border-[#D2D2D7]/40">
+          <button 
+            onClick={() => setShowAll(!showAll)}
+            className="px-6 py-2 rounded-full text-sm font-semibold text-[#0071E3] bg-[#0071E3]/10 hover:bg-[#0071E3]/20 transition-colors"
+          >
+            {showAll ? 'Show Top 20' : `View All Customers (${sorted.length})`}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
