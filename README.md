@@ -46,9 +46,9 @@ When a campaign launches, the Backend sends a fire-and-forget payload to the Cha
 
 ## Live URLs
 
-- **Frontend**: [Vercel Deployment URL]
-- **Backend API**: [Render Deployment URL]
-- **Channel Service**: [Render Deployment URL]
+- **Frontend**: [https://xeno-crm-sachin.vercel.app/](https://xeno-crm-sachin.vercel.app/)
+- **Backend API**: [https://xenocrm-backend-wooy.onrender.com](https://xenocrm-backend-wooy.onrender.com)
+- **Channel Service**: [https://xeno-crm-m1lv.onrender.com](https://xeno-crm-m1lv.onrender.com)
 
 ## Tech Stack
 
